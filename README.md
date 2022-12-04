@@ -1,3 +1,3 @@
 ## live site
 
- https://sun-tech-redux.netlify.app/wishlist
+ https://sun-tech-redux.netlify.app/
