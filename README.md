@@ -1,3 +1,3 @@
-## server
+## live site
 
-server link : https://github.com/mir-hussain/moon-tech-server
+ https://sun-tech-redux.netlify.app/wishlist
