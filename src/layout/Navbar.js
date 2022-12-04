@@ -17,11 +17,11 @@ const Navbar = () => {
         <li>
           <Link to='/about'>About</Link>
         </li>
-        <li title='Wishlist' className='bg-red-500 p-2 rounded-full'>
-          <Link to='/'>
+        <Link to='/wishlist'>
+          <li title='Wishlist' className='bg-red-500 p-2 rounded-full'>
             <IoIosListBox className='text-white' />
-          </Link>
-        </li>
+          </li>
+        </Link>
         <Link to='/cart'>
           <li title='cart' className='bg-red-500 p-2 rounded-full'>
             <BsFillCartFill className='text-white ' />

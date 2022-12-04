@@ -1,12 +1,14 @@
-import { ADD_TO_CART, DECREASE_CART_QUANTITY, INCREASE_CART_QUANTITY, REMOVE_FROM_CART } from "../actionTypes/actionTypes";
+import { ADD_TO_CART, ADD_TO_WISHLIST, DECREASE_CART_QUANTITY, INCREASE_CART_QUANTITY, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST } from "../actionTypes/actionTypes";
 
 const initialState = {
     cart: [],
+    topRated: [],
+    wishlist: [],
 }
 
 const productReducer = (state = initialState, action) => {
     const selectedProduct = state.cart.find(product => product._id === action.payload._id);
-    console.log(selectedProduct);
+    //console.log(selectedProduct);
     switch (action.type) {
         case INCREASE_CART_QUANTITY:
         case ADD_TO_CART:
@@ -43,6 +45,25 @@ const productReducer = (state = initialState, action) => {
                 ...state,
                 cart: [...state.cart.filter(product => product._id !== action.payload._id)]
             }
+        case ADD_TO_WISHLIST:
+            const wishlistProduct = state.wishlist.find(product => product._id === action.payload._id);
+            if (wishlistProduct) {
+                return {
+                    ...state,
+                    wishlist: [...state.wishlist.filter(product => product._id !== action.payload._id), wishlistProduct]
+                }
+            }
+            return {
+                ...state,
+                wishlist: [...state.wishlist, action.payload]
+            }
+
+        case REMOVE_FROM_WISHLIST:
+            return {
+                ...state,
+                wishlist: [...state.wishlist.filter(product => product._id !== action.payload._id)]
+            }
+
         default:
             return state;
     }

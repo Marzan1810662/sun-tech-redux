@@ -4,8 +4,7 @@ import { BsTrash } from "react-icons/bs"
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../redux/actionTypes/actionTypes";
-import { addToCart, decreaseCartQantity, increaseCartQantity, removeFromCart } from "../redux/actionCreators/productActions";
+import { addToCart, addToWishlist, decreaseCartQantity, increaseCartQantity, removeFromCart, RemoveFromWishlist } from "../redux/actionCreators/productActions";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -47,11 +46,16 @@ const ProductCard = ({ product }) => {
           onClick={() => dispatch(addToCart(product))}>
           Add to cart
         </button>
-        <button
+        {!pathname.includes('wishlist') && <button
           title='Add to wishlist'
-          className='bg-red-500  py-1 px-2 rounded-full'>
+          className='bg-red-500  py-1 px-2 rounded-full' onClick={() => dispatch(addToWishlist(product))}>
           <BiListPlus className='text-white' />
-        </button>
+        </button>}
+        {pathname.includes('wishlist') && <button
+          title='Remove wishlist'
+          className='bg-red-500  py-1 px-2 rounded-full' onClick={() => dispatch(RemoveFromWishlist(product))}>
+          <BsTrash className='text-white' />
+        </button>}
       </div>}
     </div >
   );
